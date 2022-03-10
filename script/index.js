@@ -47,3 +47,45 @@ optionListPeriod.addEventListener('click', (event) => {
         }
     }
 });
+
+// select a city
+const topCityBtn = document.querySelector('.top__city');
+const city = document.querySelector('.city');
+const cityClose = document.querySelector('.city__close');
+const cityRegionList = document.querySelector('.city__region-list');
+
+topCityBtn.addEventListener('click', () => {
+    city.classList.toggle('city_active');
+});
+
+cityClose.addEventListener('click', () => {
+    city.classList.remove('city_active');
+});
+
+cityRegionList.addEventListener('click', (event) => {
+    const target = event.target;
+    if (target.classList.contains('city__link')) {
+        topCityBtn.textContent = target.textContent;
+        city.classList.remove('city_active');
+    }
+});
+
+//modal window
+const overlayVacancy = document.querySelector('.overlay_vacancy');
+const resultList = document.querySelector('.result__list');
+resultList.addEventListener('click', (event) => {
+    const target = event.target;
+
+    if (target.dataset.vacancy) {
+        event.preventDefault();
+        overlayVacancy.classList.add('overlay_active');
+    }
+});
+
+overlayVacancy.addEventListener('click', (event) => {
+    const target = event.target;
+    if (target === overlayVacancy || target.classList.contains('modal__close')) {
+        overlayVacancy.classList.remove('overlay_active');
+    } 
+    
+});
